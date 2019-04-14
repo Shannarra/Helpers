@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collection.cs" />
     <Compile Include="FileCounter.cs" />
     <Compile Include="Start.cs" />
     <None Include="LICENSE" />
