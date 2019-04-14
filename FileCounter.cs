@@ -2,7 +2,18 @@
 using System.IO;
 using System.Linq;
 
-namespace CSFiles
+/* USAGE:
+ 
+public static void Main()
+{
+    FileCounter.SetSearchPath(@"C:\", ".cs"); //this will search C:\ for all files with the extension ".cs";
+}     
+    
+*/
+
+
+
+namespace Helpers
 {
     /// <summary>
     /// This program counts all files with certain extension.
@@ -66,11 +77,7 @@ namespace CSFiles
         /// </summary>
         private static uint evoked = 1;
 
-        static void Main(string[] args)
-        {
-            Console.WriteLine(Count(@"c:\") + Count(@"d:\"));
-            Console.WriteLine($"Evoked: {evoked} times");
-        }
+        private static string extension;
 
         /// <summary>
         /// Counts all files with certain extension in the given <paramref name="path"/>
@@ -87,7 +94,7 @@ namespace CSFiles
                            select dir;
                 dirs.ForEach(Count);
 
-                var csFiles = dirs.GetFilesIn(".cs");
+                var csFiles = dirs.GetFilesIn(extension);
 
                 csFiles.ForEach(Increment);
 
@@ -95,6 +102,18 @@ namespace CSFiles
 
             }
             catch (UnauthorizedAccessException) { return count; }
+        }
+
+        /// <summary>
+        /// Sets the search path of the class.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="fileExtension">The extension to be searched for.</param>
+        public static void SetSearchPath(string path, string fileExtension)
+        {
+            extension = fileExtension;
+            Console.WriteLine(Count(path));
+            Console.WriteLine($"Evoked: {evoked} times");
         }
     }
 }

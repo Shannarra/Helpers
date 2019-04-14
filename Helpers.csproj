@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileCounter.cs" />
+    <Compile Include="Start.cs" />
     <None Include="LICENSE" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
