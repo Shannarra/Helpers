@@ -10,7 +10,7 @@ namespace Helpers
     {
         public static void Main()
         {
-            _ = new Collection();
+            Scope.Run("../../FileCounter.cs");
         }
     }
 }

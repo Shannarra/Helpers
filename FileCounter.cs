@@ -2,17 +2,6 @@
 using System.IO;
 using System.Linq;
 
-/* USAGE:
- 
-public static void Main()
-{
-    FileCounter.SetSearchPath(@"C:\", ".cs"); //this will search C:\ for all files with the extension ".cs";
-}     
-    
-*/
-
-
-
 namespace Helpers
 {
     /// <summary>
@@ -111,8 +100,12 @@ namespace Helpers
         /// <param name="fileExtension">The extension to be searched for.</param>
         public static void SetSearchPath(string path, string fileExtension)
         {
+            Console.WriteLine("Counting started.. please wait");
             extension = fileExtension;
-            Console.WriteLine(Count(path));
+            System.Threading.Thread thread = new System.Threading.Thread(() => { Console.WriteLine(Count(path)); });
+            thread.Start();
+            thread.Join();
+            Console.WriteLine("Finished!");
             Console.WriteLine($"Evoked: {evoked} times");
         }
     }
